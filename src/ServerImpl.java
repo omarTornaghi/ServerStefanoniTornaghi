@@ -1,12 +1,18 @@
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-public class ServerImpl implements ResourceServer {
+public class ServerImpl extends UnicastRemoteObject implements ResourceServer {
     private static Deposito deposito = new Deposito();
     //Coda thread-safe
     Queue<OperazioneDeposito> depositiNonEffettuati = new ConcurrentLinkedQueue<OperazioneDeposito>();
     Queue<ResourceClient> prelieviNonEffettuati = new ConcurrentLinkedQueue<ResourceClient>();
+
+    protected ServerImpl() throws RemoteException {
+    }
 
     public synchronized void aggiungiRisorsa(Risorsa r, ResourceClient c) throws RemoteException {
         //Posso aggiungere?
@@ -49,8 +55,10 @@ public class ServerImpl implements ResourceServer {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RemoteException {
         //Creazione registry
-
+        ResourceServer resServ = (ResourceServer) new ServerImpl();
+        Registry reg = LocateRegistry.createRegistry(1099);
+        reg.rebind("DEPOSITO", resServ);
     }
 }
