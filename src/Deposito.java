@@ -1,6 +1,6 @@
 public class Deposito {
-    private final int CAPACITA_MASSIMA = 5;
-    private Risorsa[] risorse = new Risorsa[CAPACITA_MASSIMA];
+    private final int CAPACITA_MASSIMA = 10;
+    private final Risorsa[] risorse = new Risorsa[CAPACITA_MASSIMA];
     private int numElementi = 0;
 
     public Deposito() {
@@ -8,7 +8,7 @@ public class Deposito {
 
     public synchronized boolean inserisciRisorsa(Risorsa r) {
         if (numElementi >= CAPACITA_MASSIMA) {
-            System.out.println("Non è stato possibile aggiungere la risorsa: " + r);
+            System.out.println("Array pieno, risorsa non inserita: " + r);
             return false;
         }
         risorse[numElementi++] = r;
@@ -20,7 +20,7 @@ public class Deposito {
 
     public synchronized Risorsa prelievoRisorsa() {
         if (numElementi == 0) {
-            System.out.println("Non è stato possibile fare il prelievo");
+            System.out.println("Array vuoto, prelievo non effettuabile");
             return null;
         }
         Risorsa r = risorse[--numElementi];
@@ -28,5 +28,4 @@ public class Deposito {
         return r;
     }
 
-    public synchronized int getNumElementi(){ return numElementi;}
 }

@@ -22,13 +22,12 @@ public class RisorsaServerImpl extends UnicastRemoteObject implements RisorsaSer
             c.notificaAggiunta(r);
         }
         else {
-            //Altrimenti
-            System.out.println("Non posso aggiungere quindi mi metto in coda");
+            //Il deposito è pieno
             depositiNonEffettuati.add(new OperazioneDeposito(r, c));
+            System.out.println("Depositi in coda: " + depositiNonEffettuati.size());
         }
         //c'è un prelievo in attesa?
         if(!prelieviNonEffettuati.isEmpty()){
-            System.out.println("Posso fare anche un prelievo");
             //Si, quindi lo eseguo
             RisorsaClient clientPrelievo = prelieviNonEffettuati.poll();
             prelevaRisorsa(clientPrelievo);
@@ -42,9 +41,9 @@ public class RisorsaServerImpl extends UnicastRemoteObject implements RisorsaSer
             c.notificaPrelievo(r);
         }
         else{
-            //Altrimenti
-            System.out.println("Non posso prelevare quindi mi metto in coda");
+            //Il deposito è vuoto
             prelieviNonEffettuati.add(c);
+            System.out.println("Prelievi in coda: " + prelieviNonEffettuati.size());
         }
         //Posso fare un inserimento?
         if(!depositiNonEffettuati.isEmpty()){
