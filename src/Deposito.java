@@ -12,7 +12,7 @@ public class Deposito {
             return false;
         }
         risorse[numElementi++] = r;
-        System.out.println("Aggiunta risorsa: " + r);
+        System.out.println("Aggiunta risorsa in DEPOSITO: " + r);
         System.out.println("numElementi: " + numElementi);
         return true;
 
@@ -24,7 +24,7 @@ public class Deposito {
             return null;
         }
         Risorsa r = risorse[--numElementi];
-        System.out.println("Prelievo risorsa: " + r);
+        System.out.println("Prelievo risorsa in DEPOSITO: " + r);
         return r;
     }
 }
