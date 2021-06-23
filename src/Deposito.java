@@ -1,5 +1,5 @@
 public class Deposito {
-    private final int CAPACITA_MASSIMA = 10;
+    private final int CAPACITA_MASSIMA = 100;
     private final Risorsa[] risorse = new Risorsa[CAPACITA_MASSIMA];
     private int numElementi = 0;
 

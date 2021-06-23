@@ -57,5 +57,6 @@ public class RisorsaServerImpl extends UnicastRemoteObject implements RisorsaSer
         RisorsaServer resServ = new RisorsaServerImpl();
         Registry reg = LocateRegistry.createRegistry(1099);
         reg.rebind("DEPOSITO", resServ);
+        System.out.println("Server partito");
     }
 }
