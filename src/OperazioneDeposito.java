@@ -1,8 +1,8 @@
 public class OperazioneDeposito {
     private Risorsa risorsa;
-    private ResourceClient client;
+    private RisorsaClient client;
 
-    public OperazioneDeposito(Risorsa risorsa, ResourceClient client) {
+    public OperazioneDeposito(Risorsa risorsa, RisorsaClient client) {
         this.risorsa = risorsa;
         this.client = client;
     }
@@ -15,11 +15,11 @@ public class OperazioneDeposito {
         this.risorsa = risorsa;
     }
 
-    public ResourceClient getClient() {
+    public RisorsaClient getClient() {
         return client;
     }
 
-    public void setClient(ResourceClient client) {
+    public void setClient(RisorsaClient client) {
         this.client = client;
     }
 }

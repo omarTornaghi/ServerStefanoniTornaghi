@@ -1,5 +1,5 @@
 public class Deposito {
-    private final int CAPACITA_MASSIMA = 20;
+    private final int CAPACITA_MASSIMA = 5;
     private Risorsa[] risorse = new Risorsa[CAPACITA_MASSIMA];
     private int numElementi = 0;
 
@@ -27,4 +27,6 @@ public class Deposito {
         System.out.println("Prelievo risorsa in DEPOSITO: " + r);
         return r;
     }
+
+    public synchronized int getNumElementi(){ return numElementi;}
 }
